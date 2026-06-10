@@ -13,17 +13,52 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for modern styling
+# Custom CSS for legibility fix and Cute Climate Theme
 st.markdown("""
 <style>
-    .reportview-container { background: #f5f7f9; }
-    .stMetric { background-color: #ffffff; padding: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-    .lecture-card { background-color: #ffffff; padding: 25px; border-radius: 12px; border-left: 5px solid #1E3A8A; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 20px; }
-    .quiz-card { background-color: #F8FAFC; padding: 25px; border-radius: 12px; border: 1px solid #E2E8F0; margin-top: 20px; }
-    h1 { color: #1E3A8A; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
-    h2 { color: #2563EB; }
-    h3 { color: #0F172A; }
-    .stRadio > label { font-weight: bold; color: #1E3A8A; }
+    /* Force a light background to prevent dark-mode text invisibility */
+    .stApp { background-color: #FAFAFA; } 
+    
+    /* Cute Earthy Green Lecture Cards */
+    .lecture-card { 
+        background-color: #F0FDF4; /* Soft mint/earth green */
+        color: #064E3B !important; /* Explicitly dark forest green text */
+        padding: 25px; 
+        border-radius: 12px; 
+        border-left: 6px solid #10B981; /* Bright emerald border */
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+        margin-bottom: 20px; 
+    }
+    .lecture-card p, .lecture-card ul, .lecture-card li { 
+        color: #064E3B !important; 
+        font-size: 1.05rem;
+    }
+    .lecture-card h3, .lecture-card h4 {
+        color: #047857 !important;
+    }
+
+    /* Cute Ocean Blue Quiz Cards */
+    .quiz-card { 
+        background-color: #EFF6FF; /* Soft ocean blue */
+        color: #1E3A8A !important; /* Explicitly dark navy blue text */
+        padding: 25px; 
+        border-radius: 12px; 
+        border: 2px solid #BFDBFE; 
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        margin-top: 20px; 
+    }
+    .quiz-card h3 {
+        color: #1D4ED8 !important;
+    }
+    
+    /* Headers & Text Fixes */
+    h1 { color: #047857 !important; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+    h2 { color: #0284C7 !important; }
+    
+    /* Force Streamlit UI elements (like radio buttons) to be legible */
+    .stRadio > label { font-weight: bold; color: #0F172A !important; }
+    div[role="radiogroup"] label { color: #0F172A !important; }
+    div[data-testid="stMarkdownContainer"] p { color: #1F2937; } /* Default text color */
 </style>
 """, unsafe_allow_html=True)
 
@@ -115,7 +150,7 @@ elif current_idx == 1:
         """
         <div class="lecture-card">
             <h3>📖 Deep-Dive: Weather, Climate, and Anomalies</h3>
-            <p>As seen in <b>Problem Set 1A</b>, we often analyze correlation maps between time series (like an ENSO index) and global precipitation. Because weather is inherently noisy, it is entirely possible to generate maps from completely random data that show correlation coefficients exceeding $\pm 0.3$ by pure chance.</p>
+            <p>As seen in <b>Problem Set 1A</b>, we often analyze correlation maps between time series (like an ENSO index) and global precipitation. Because weather is inherently noisy, it is entirely possible to generate maps from completely random data that show correlation coefficients exceeding ± 0.3 by pure chance.</p>
         </div>
         """, unsafe_allow_html=True
     )
@@ -144,7 +179,7 @@ elif current_idx == 2:
         """
         <div class="lecture-card">
             <h3>📖 Deep-Dive: Albedo and Energy Balance</h3>
-            <p>From <b>Problem Set 1B</b>: If we try to change the temperature of the Earth by artificially paving an area the size of California with a highly reflective substance (albedo = 0.9), it alters the Earth's weighted average albedo. This directly changes the absorbed solar radiation ($S_0 (1 - \\alpha_{new})$).</p>
+            <p>From <b>Problem Set 1B</b>: If we try to change the temperature of the Earth by artificially paving an area the size of California with a highly reflective substance (albedo = 0.9), it alters the Earth's weighted average albedo. This directly changes the absorbed solar radiation (S₀ (1 - α_new)).</p>
         </div>
         """, unsafe_allow_html=True
     )
@@ -232,17 +267,17 @@ elif current_idx == 5:
         <div class="lecture-card">
             <h3>📖 Deep-Dive: Simple Climate Models & Heat Storage</h3>
             <p>From <b>Problem Set 3A</b>: The global average climate model taking into account ocean heat capacity is written as:</p>
-            <p style="text-align:center;">$C \\frac{\\partial \\Delta T_s}{\\partial t} + \\alpha \\Delta T_s = G + N$</p>
-            <p>Where $C$ is the heat capacity of the upper ocean, $\\alpha$ is the climate feedback parameter, and $G$ is the radiative forcing from greenhouse gases.</p>
+            <p style="text-align:center;"><b>C (∂ΔT_s / ∂t) + αΔT_s = G + N</b></p>
+            <p>Where C is the heat capacity of the upper ocean, α is the climate feedback parameter, and G is the radiative forcing from greenhouse gases.</p>
         </div>
         """, unsafe_allow_html=True
     )
     
     st.markdown('<div class="quiz-card"><h3>🧠 Problem Set 3A Style Quiz</h3>', unsafe_allow_html=True)
-    q = st.radio("In the equation above, what physical phenomenon explains why the surface temperature ($\\Delta T_s$) continues to rise slowly for decades even if the greenhouse gas forcing ($G$) is suddenly held perfectly constant?", [
-        "A) The heat capacity of the ocean ($C$) absorbs the initial energy imbalance, causing a massive thermal lag between the forcing applied and the eventual equilibrium temperature.",
-        "B) The climate feedback parameter ($\\alpha$) continuously increases over time, generating its own energy.",
-        "C) The weather noise ($N$) dominates the equation on decadal timescales."
+    q = st.radio("In the equation above, what physical phenomenon explains why the surface temperature (ΔT_s) continues to rise slowly for decades even if the greenhouse gas forcing (G) is suddenly held perfectly constant?", [
+        "A) The heat capacity of the ocean (C) absorbs the initial energy imbalance, causing a massive thermal lag between the forcing applied and the eventual equilibrium temperature.",
+        "B) The climate feedback parameter (α) continuously increases over time, generating its own energy.",
+        "C) The weather noise (N) dominates the equation on decadal timescales."
     ])
     
     if st.button("Submit Module 6 Quiz"):
@@ -250,7 +285,7 @@ elif current_idx == 5:
             st.success("🎯 Spot on! The immense thermal inertia of the ocean creates 'committed warming'.")
             st.session_state.unlocked_idx = max(st.session_state.unlocked_idx, 6)
         else:
-            st.error("❌ Incorrect. The ocean's heat capacity ($C$) dictates the transient response lag.")
+            st.error("❌ Incorrect. The ocean's heat capacity (C) dictates the transient response lag.")
     st.markdown('</div>', unsafe_allow_html=True)
 
 
@@ -294,7 +329,7 @@ elif current_idx == 7:
             <p>From <b>Problem Set 3B</b> and <b>Problem Set 2</b>:</p>
             <ul>
                 <li><b>Soil Moisture (PET):</b> Even if regional precipitation remains flat, soil moisture can drastically decline because higher temperatures drive massive increases in Potential Evapotranspiration (PET).</li>
-                <li><b>Ice Melt & Sea Level:</b> Melting an ice sheet requires overcoming the Latent Heat of Fusion ($L_f = 3.3 \\times 10^5 J/kg$). The surface energy imbalance dictates the exact rate of $m/yr$ at which this ice mass converts to sea-level rise.</li>
+                <li><b>Ice Melt & Sea Level:</b> Melting an ice sheet requires overcoming the Latent Heat of Fusion (L_f = 3.3 × 10⁵ J/kg). The surface energy imbalance dictates the exact rate of m/yr at which this ice mass converts to sea-level rise.</li>
             </ul>
         </div>
         """, unsafe_allow_html=True
@@ -316,6 +351,10 @@ elif current_idx == 7:
     ax.axvline(x=threshold, color='#0F172A', linestyle='--', alpha=0.7, label="Severe Heat/Drought Cutoff")
     ax.fill_between(x, y_shifted, 0, where=(x > threshold), color='#EF4444', alpha=0.25)
     ax.legend(loc="upper left")
+    
+    # Make Matplotlib transparent so it fits the new theme well
+    fig.patch.set_alpha(0)
+    ax.patch.set_alpha(0)
     st.pyplot(fig)
 
     st.markdown('<div class="quiz-card"><h3>🎓 Final HW Master Challenge</h3>', unsafe_allow_html=True)
