@@ -19,6 +19,19 @@ st.markdown("""
     /* Force a light background to prevent dark-mode text invisibility */
     .stApp { background-color: #FAFAFA; } 
     
+    /* Explicitly Fix the Sidebar Legibility */
+    [data-testid="stSidebar"] {
+        background-color: #F8FAFC !important; /* Soft, light slate background */
+    }
+    [data-testid="stSidebar"] p, 
+    [data-testid="stSidebar"] span, 
+    [data-testid="stSidebar"] h1, 
+    [data-testid="stSidebar"] h2, 
+    [data-testid="stSidebar"] h3,
+    [data-testid="stSidebar"] label {
+        color: #0F172A !important; /* Explicitly dark text for all sidebar elements */
+    }
+    
     /* Cute Earthy Green Lecture Cards */
     .lecture-card { 
         background-color: #F0FDF4; /* Soft mint/earth green */
