@@ -1,4 +1,4 @@
-streamlit
-numpy
-matplotlib
-scipy
+streamlit>=1.30.0
+numpy>=1.20.0
+matplotlib>=3.5.0
+scipy>=1.7.0
