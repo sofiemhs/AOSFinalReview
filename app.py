@@ -4,119 +4,161 @@ import matplotlib.pyplot as plt
 import scipy.stats as stats
 
 # Set up the page configuration
-st.set_page_config(page_title="AOS102 Final Review Dashboard", layout="wide")
+st.set_page_config(page_title="AOS102 Ultimate Final Review", layout="wide")
 
 # Sidebar for Navigation
 st.sidebar.title("AOS102 Study Modules")
 module = st.sidebar.radio(
-    "Select a Topic to Review:",
+    "Select a Chapter to Review:",
     (
-        "Home / Exam Rules",
-        "1. Probability & El Niño",
-        "2. Constructing a Climate Model",
-        "3. Radiative Forcing & Feedbacks",
-        "4. Scenarios & Emissions",
-        "5. Spatial Patterns & Extremes",
-        "6. Sea Level Rise & Mitigation"
+        "Exam Rules & Intro",
+        "Ch 1: Climate vs. Weather",
+        "Ch 2: The Climate System",
+        "Ch 3: Physical Processes",
+        "Ch 4: El Niño & Variability",
+        "Ch 5: Climate Models",
+        "Ch 6: Forcing & Feedbacks",
+        "Ch 7: Scenarios & Extremes"
     )
 )
 
-if module == "Home / Exam Rules":
+if module == "Exam Rules & Intro":
     st.title("AOS102: Climate Change & Climate Modeling")
-    st.subheader("Post-midterm-ish Review Dashboard")
-    st.markdown("Welcome to your study dashboard! This covers concepts heavily weighted towards the second half of the class[cite: 644].")
+    st.subheader("Ultimate Final Review Dashboard")
+    st.markdown("Welcome to your study dashboard! This covers concepts heavily weighted towards the second half of the class, while integrating foundational concepts from Chapters 1-4.")
     
-    st.info("📸 **Photo Recommendation**: Add the title slide image (Page 1) here to make the dashboard look like your lecture deck.")
-
     st.warning("""
-    **🚨 Final Exam Rules Reminder:**
-    * **Aids permitted:** Two 8.5"x11" sheets of paper, double-sided (4 pages total)[cite: 647].
-    * Must have your name on each side and be handed in with the exam[cite: 647].
-    * Notes can include figures and clips, but must be organized individually[cite: 648].
-    * **At least 10% of each page MUST be in your handwriting**[cite: 649].
-    * Hard copy only (no electronics!)[cite: 650].
+    **🚨 Midterm / Final Exam Rules Reminder:**
+    * **Aids permitted:** Two 8.5"x11" sheets of paper, double-sided (4 pages total)[cite: 4585].
+    * Must have your name on each side and be handed in with the exam.
+    * Notes can include figures and clips, but must be organized individually[cite: 4455].
+    * **At least 10% of each page MUST be in your handwriting**[cite: 4456].
+    * Hard copy only (no electronics!).
     """)
 
-elif module == "1. Probability & El Niño":
-    st.title("Probability Distributions & Precipitation")
+elif module == "Ch 1: Climate vs. Weather":
+    st.title("Chapter 1: Climate vs. Weather")
     
     st.markdown("""
-    ### El Niño's Effect on Precipitation (e.g., California)
-    Climate models run multiple times with different initial conditions show that different weather and storms happen each year, even during the exact same El Niño event[cite: 671, 673].
+    ### Definitions
+    * **Climate vs. Weather:** Climate quantities are defined by averages or other statistics over the weather for a sufficiently long interval[cite: 4457]. 
+    * We look at anomalies (departures from the long-term climatology) to understand variations.
+    * **Example:** Creating a histogram of November-April precipitation over many years to obtain climatological probabilities[cite: 4458].
     
-    * **The Shift:** The probability of a rainy winter is enhanced during El Niño, but it is far from certain[cite: 655].
-    * **Example (Figure 4.22):** You might find a precipitation value that only **33%** (1/3) of all normal winters exceed. During El Niño winters, **50%** of winters might exceed that exact same value[cite: 660, 661, 662].
-    * Stronger El Niños enhance the probability of a rainier-than-average winter substantially more[cite: 676].
+    ### Natural vs. Anthropogenic
+    * **Natural Variability:** El Niño is a leading example of natural climate variation on interannual timescales[cite: 3].
+    * **Anthropogenic:** Trace gases and human emissions (specifically $CO_2$) drive the rapid warming observed since the industrial revolution[cite: 4].
+    """)
+    st.info("📸 **Photo Recommendation**: Insert the Chapter 1 Title Slide or a precipitation histogram here to visualize climatological averages.")
+
+elif module == "Ch 2: The Climate System":
+    st.title("Chapter 2: Basics of Global Climate")
+    
+    st.markdown("""
+    ### Components of the Climate System
+    To model climate, we must consider the interacting components:
+    * **Atmosphere**
+    * **Ocean**
+    * **Land Surface**
+    * **Cryosphere:** Land ice (ice shelves, glaciers), snow, and sea ice[cite: 451].
+    * **Biosphere**
+    * **Lithosphere:** Solid earth[cite: 451].
+    * **Biogeochemistry:** The chemical composition and biological chemistry of the climate system[cite: 451].
+    
+    ### Carbon Reservoirs
+    * The **deep ocean** holds the vast majority of carbon (~85%).
+    * Fossil fuel reserves and land hold significant amounts.
+    * The **atmosphere** is a comparatively small carbon reservoir (~1.3%), meaning that human emissions create a massive impact on atmospheric concentrations relatively quickly.
+    """)
+
+elif module == "Ch 3: Physical Processes":
+    st.title("Chapter 3: Physical Processes")
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown("""
+        ### Conservation of Momentum
+        Climate models rely on fundamental physics, notably Newton's Second Law ($F = ma$ or $a = F/m$) applied to fluids[cite: 937]. 
+        * Acceleration ($a$) is the rate of change of velocity.
+        * **Forces in the Atmosphere/Ocean:** The forces driving this include the Coriolis force, Pressure Gradient Force (PGF), gravity, and friction/drag[cite: 938].
+        """)
+        
+    with col2:
+        st.markdown("""
+        ### Geostrophic Balance
+        * Wind doesn't blow directly from high to low pressure. 
+        * **Geostrophic Balance** is an approximate balance between the **Coriolis force** and the **pressure gradient force** (PGF)[cite: 932]. 
+        * This balance dictates wind and current motions in many applications, keeping winds blowing *along* isobars rather than across them.
+        """)
+        
+    st.info("📸 **Photo Recommendation**: Insert Figure 3.4 showing Geostrophic Balance (arrows balancing PGF and Coriolis).")
+
+elif module == "Ch 4: El Niño & Variability":
+    st.title("Chapter 4: El Niño & Year-to-Year Prediction")
+    
+    st.markdown("""
+    ### El Niño Southern Oscillation (ENSO)
+    ENSO is the primary driver of natural interannual climate variability.
+    * During the fully developed warm phase (like December 1997), massive anomalies in Sea Surface Temperatures (SST) alter global weather[cite: 1442].
+    
+    ### The Shift in Precipitation Probabilities
+    Climate models run multiple times with different initial conditions show that different storms happen each year, even during the exact same El Niño event.
+    * **The Shift:** The probability of a rainy winter is enhanced during El Niño, but it is far from certain.
+    * Stronger El Niños enhance the probability of a rainier-than-average winter substantially more.
     """)
     
-    st.info("📸 **Photo Recommendation**: Insert the Northern/Southern California precipitation probability distribution graphs (Slides 3-4) showing the La Niña/Neutral/El Niño curves.")
+    st.info("📸 **Photo Recommendation**: Insert the California precipitation probability distribution graphs from the slides showing the La Niña/Neutral/El Niño shifted curves.")
 
-elif module == "2. Constructing a Climate Model":
-    st.title("Constructing a Climate Model")
+elif module == "Ch 5: Climate Models":
+    st.title("Chapter 5: Constructing a Climate Model")
     
     col1, col2 = st.columns(2)
     with col1:
         st.markdown("""
         ### GCM Grid and Resolution
-        * **Grid Cells:** For each grid cell, there is a single value for variables like temperature, velocity, etc.[cite: 712]. The vertical coordinate follows the topography[cite: 712].
-        * **Time Steps:** Budgets calculate changes for the next time step (e.g., 15 minutes)[cite: 715].
+        * **Grid Cells:** For each grid cell, there is a single value for variables like temperature, velocity, etc.[cite: 2105]. 
+        * The vertical coordinate follows the topography of the earth[cite: 2105].
+        * **Fluxes:** Transports of mass, energy, and moisture are calculated into and out of each grid cell[cite: 2105].
+        * **Time Steps:** Budgets calculate changes for the next time step (e.g., every 15 minutes)[cite: 2105].
         """)
         st.info("📸 **Photo Recommendation**: Insert Figure 5.1 (3D typical atmospheric GCM grid).")
         
     with col2:
         st.markdown("""
         ### Computational Cost of High Resolution
-        * If you halve the horizontal grid size, you also have to halve the time step[cite: 733].
-        * **The Math:** Doubling resolution in x, y, and z means $2 \\times 2 \\times 2 \\times$ (number of grid cells), plus $2 \\times$ the time steps. **The cost increases by a factor of $2^4 = 16$**[cite: 734, 735].
-        * Running a low-resolution model for 40 years can cost the same computationally as running a high-resolution model for 1 week[cite: 740, 741].
+        * If you halve the horizontal grid size, you also have to halve the time step.
+        * **The Math:** Doubling resolution in x, y, and z means $2 \\times 2 \\times 2 \\times$ (number of grid cells), plus $2 \\times$ the time steps. **The cost increases by a factor of $2^4 = 16$**.
         """)
 
-elif module == "3. Radiative Forcing & Feedbacks":
-    st.title("Radiative Forcing & The Water Vapor Feedback")
+elif module == "Ch 6: Forcing & Feedbacks":
+    st.title("Chapter 6: Forcing & Feedbacks")
     
     st.markdown("""
-    ### Radiative Forcing Imbalance
-    Radiative forcing is the top-of-atmosphere initial imbalance in the energy budget[cite: 449].
-    * **Aerosols:** Anthropogenic aerosols reflect sunlight[cite: 450].
-    * **Greenhouse Gases (GHG):** GHGs trap infrared (IR) radiation[cite: 450]. 
-    * **Equilibrium:** To reach equilibrium with higher GHGs, the temperature increases until the top of the atmosphere IR again balances net solar radiation. Ocean heat capacity slows this process down[cite: 450, 451].
+    ### Cloud Feedbacks
+    Clouds play a complex dual role in the earth's energy budget:
+    * **High Clouds (Cirrus):** Cause a net **warming tendency**. They let solar radiation through but absorb outgoing infrared (IR) radiation from the earth[cite: 2379].
+    * **Low Clouds (Marine Stratus):** Cause a net **cooling tendency**. They act as a thick shield, creating increased reflection of incoming solar radiation[cite: 2379].
     
     ### The Water Vapor Feedback
-    * Increased water vapor is critical for precipitation changes[cite: 453, 463].
-    * For typical lower troposphere temperatures, **water vapor increases about 7% per °K** (if Relative Humidity remains constant)[cite: 454, 464].
+    * Increased water vapor is critical for precipitation changes.
+    * For typical lower troposphere temperatures, water vapor increases about 7% per °K (if Relative Humidity remains constant).
     """)
+    st.info("📸 **Photo Recommendation**: Insert the cloud feedback visual showing the arrows for High Cloud (warming) vs Low Cloud (cooling).")
 
-elif module == "4. Scenarios & Emissions":
-    st.title("Emissions Scenarios (RCPs)")
-    
-    st.markdown("Representative Concentration Pathways (RCPs) are named based on their radiative forcing in the year 2100[cite: 470, 478].")
-    
-    st.table({
-        "Scenario": ["RCP 8.5", "RCP 6.0", "RCP 4.5", "RCP 3-PD (2.6)"],
-        "Radiative Forcing (2100)": ["8.5 W/m²", "6.0 W/m²", "4.5 W/m²", "Peak of 3.0 W/m² then declines"],
-        "CO2 eq (ppm)": ["1370 ppm", "850 ppm", "650 ppm", "Peaks at 490 ppm then declines"],
-        "Notes": ["Highest emissions [cite: 470, 478]", "Stabilizes after 2100 [cite: 471, 479]", "Stabilizes after 2100 [cite: 472, 480]", "Requires net negative emissions [cite: 481]"]
-    })
+elif module == "Ch 7: Scenarios & Extremes":
+    st.title("Chapter 7: Scenarios & Extremes")
     
     st.markdown("""
-    **Transient vs. Equilibrium:**
-    Even if greenhouse gas emissions are suddenly stopped at a specific time, the temperature was less than equilibrium due to lag, so it **continues to rise for several decades**[cite: 464].
-    """)
-
-elif module == "5. Spatial Patterns & Extremes":
-    st.title("Spatial Patterns of Warming & Extreme Events")
-    
-    st.markdown("""
-    ### Key Spatial Patterns
-    * **Poleward Amplification:** A robust feature where the poles warm faster, influenced by the snow/ice feedback and lapse rate differences[cite: 499, 500, 515, 516].
-    * **Continents vs. Oceans:** Continents generally warm before the oceans[cite: 503, 519].
-    * **Precipitation:** Global average precipitation increases (~1.5-3% per °C). High latitudes and tropical areas get more rain, but subtropical dry areas decrease[cite: 524, 525]. This is the **"Rich-Get-Richer"** effect: more moisture leads to increased transport to current convergence regions[cite: 484].
+    ### Time-Dependent Warming Scenarios
+    Climate model predictions respond to forcings (like GHGs) continuously applied according to specific emissions pathways[cite: 2911]. 
+    * These responses map out drastically different spatial patterns depending on if we hit peak forcing soon or continue unabated[cite: 2911].
+    * Changes represent significant spatial impacts on sea ice fraction, leading to drastic melt projections (e.g., in the September-November timeframe over the Arctic)[cite: 3932].
     """)
     
     st.divider()
     
-    st.markdown("### How a Shift in Mean Temperature Affects Extremes [cite: 540]")
-    st.markdown("If the standard deviation remains similar but the mean temperature rises, events considered 'extreme' heat waves today will occur much more frequently[cite: 540].")
+    st.markdown("### How a Shift in Mean Temperature Affects Extremes")
+    st.markdown("If the standard deviation remains similar but the mean temperature rises, events considered 'extreme' heat waves today will occur much more frequently.")
     
     # Interactive visual for extreme events shifting
     st.subheader("Interactive: Shift the Mean Temperature")
@@ -135,23 +177,4 @@ elif module == "5. Spatial Patterns & Extremes":
     ax.legend()
     st.pyplot(fig)
     
-    st.caption("As the distribution slides right, the area under the curve past the old threshold grows drastically[cite: 540, 542].")
-
-elif module == "6. Sea Level Rise & Mitigation":
-    st.title("Sea Level Rise & Mitigation")
-    
-    st.markdown("""
-    ### Sea Level Rise Sources
-    * **Thermosteric (Thermal Expansion):** Ocean heat storage slows down surface warming but expands the water, raising sea levels (~0.8 mm/yr above 700m depth)[cite: 586, 596, 600].
-    * **Land Ice Melt:** Major loss mechanism from energy balance changes (~1-2 mm/yr)[cite: 585, 601].
-    * **Ongoing Rise:** Sea level rise continues even after CO2 concentrations are brought to a constant level due to the deep ocean's immense thermal inertia[cite: 601, 613].
-    """)
-    st.info("📸 **Photo Recommendation**: Insert the Global Mean Sea Level (GMSL) vs SSP Scenarios line chart here.")
-
-    st.markdown("""
-    ### Mitigation and Emissions
-    * **Constant emissions** yields an ongoing increase in concentration[cite: 616, 631]. 
-    * To stabilize CO2, emissions must be brought down dramatically[cite: 616]. 
-    * If emissions drop too slowly, we overshoot stabilization targets, which means **negative emissions** (actively removing CO2) will be required[cite: 617].
-    * **California Example:** Meeting the 80% reduction by 2050 requires 3 major energy system transformations (efficiency, decarbonized electricity, electrification of direct fuel uses)[cite: 632].
-    """)
+    st.caption("As the distribution slides right, the area under the curve past the old threshold grows drastically. This concept applies to heatwaves and extreme precipitation events!")
